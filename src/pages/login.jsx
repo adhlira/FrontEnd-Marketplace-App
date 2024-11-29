@@ -8,7 +8,7 @@ const login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -27,14 +27,17 @@ const login = () => {
         localStorage.setItem("user", JSON.stringify(response.data.user));
         alert("Succesfully Login!");
         navigate("/index-seller");
-      } else {
-        setMessage("Login failed: " + response.data.message);
       }
     } catch (error) {
-      setMessage("Error: " + error.response?.data?.message || "There is An error");
+      if (error.response && error.response.status === 400) {
+        setErrorMessage(error.response.data.message);
+        console.log("Ini adalah error message : ", errorMessage);
+      }
+      // setEmail("");
+      // setPassword("");
     }
   };
-  
+
   return (
     <>
       <div className="bg-blue-800 flex justify-center h-screen">
@@ -42,8 +45,26 @@ const login = () => {
           <h1 className="text-white text-center text-2xl mb-3">Sign In</h1>
           <h3 className="text-white text-center text-sm mb-10">Unite with style, sell with confidence</h3>
           <form onSubmit={handleSubmit}>
-            <input type="text" className="w-full rounded-lg border p-2 mt-5" placeholder="Email" name="email" onChange={(e) => setEmail(e.target.value)} />
-            <input type="password" name="password" id="password" className="w-full rounded-lg border p-2 mt-5" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+            <input
+              type="text"
+              className={`shadow appearance-none w-full rounded-lg border p-2 mt-5 leading-tight focus:outline-none focus:shadow-outline ${errorMessage ? "border-red-500" : ""}`}
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              value={email}
+            />
+            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+            <input
+              type="password"
+              name="password"
+              id="password"
+              className={`shadow appearance-none w-full rounded-lg border p-2 mt-5 leading-tight focus:outline-none focus:shadow-outline ${errorMessage ? "border-red-500" : ""}`}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              style={{ borderColor: errorMessage.password ? "red" : "" }}
+            />
+            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
             <button type="submit" className="w-full p-2 border rounded-full bg-blue-800 mt-10 text-white hover:bg-blue-700">
               LOGIN
             </button>
