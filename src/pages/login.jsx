@@ -27,8 +27,14 @@ const login = () => {
       if (response.status === 200) {
         // Simpan data user di localStorage
         localStorage.setItem("user", JSON.stringify(response.data.user));
+        const roleId = response.data.user.role_id;
+        console.log("ini adalah data user", response.data.user);
         alert("Succesfully Login!");
-        navigate("/index-seller");
+        if (roleId == 1) {
+          navigate("/index-seller");
+        } else {
+          navigate("/home");
+        }
       }
     } catch (error) {
       console.log("ini adalah error", error);
