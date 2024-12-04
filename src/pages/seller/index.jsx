@@ -1,8 +1,10 @@
-function index() {
+import Navbar from "../../components/seller/navbar.jsx";
+
+const index = () => {
   return (
     <>
-      <h1>Ini adalah halaman index untuk user type seller</h1>
+      <Navbar />
     </>
   );
-}
+};
 export default index;
