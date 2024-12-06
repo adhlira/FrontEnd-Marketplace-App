@@ -11,7 +11,7 @@ const products_page = () => {
           <div className="w-1/4 bg-green-800 text-white h-screen">
             <Sidebar />
           </div>
-          <div className="w-full border text-center p-5 h-screen">
+          <div className="w-full border p-3 h-screen">
             <Products />
           </div>
         </div>

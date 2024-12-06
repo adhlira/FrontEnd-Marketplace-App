@@ -26,9 +26,12 @@ const login = () => {
 
       if (response.status === 200) {
         // Simpan data user di localStorage
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-        const roleId = response.data.user.role_id;
-        console.log("ini adalah data user", response.data.user);
+        const user = response.data.user;
+        const token = response.data.token;
+        const userData = { ...user, token };
+        localStorage.setItem("user", JSON.stringify(userData));
+        console.log("ini adalah user data", userData);
+        const roleId = userData.role_id;
         alert("Succesfully Login!");
         if (roleId == 1) {
           navigate("/index-seller");
