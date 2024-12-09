@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faPlus, faTrash, faPencil } from "@fortawesome/free-solid-svg-icons";
@@ -93,27 +94,38 @@ const products = () => {
       </div>
 
       <div className="container p-3 mx-auto border rounded-lg">
-        <table className="table-bordered p-2">
+        <table className="table-bordered font-serif">
           <thead>
-            <tr>
-              <th className="w-80 border">Product Name</th>
-              <th className="border w-40">Price</th>
-              <th className="border w-40">Stock</th>
-              <th className="border w-40">Status</th>
-              <th className="border w-60">Action</th>
+            <tr className="border-b">
+              <th className="w-80">Product Name</th>
+              <th className=" w-40">Price</th>
+              <th className=" w-40">Stock</th>
+              <th className=" w-40">Status</th>
+              <th className=" w-60">Action</th>
             </tr>
           </thead>
           <tbody>
             {product.map((item, index) => (
-              <tr key={index} className="text-center">
-                <td className="border">{item.name}</td>
-                <td className="border">Rp. {item.price}</td>
-                <td className="border">{item.quantity} Pcs</td>
-                <td className="border">Active</td>
-                <td className="border gap-2">
-                  <button className="border rounded-lg p-2 bg-green-600 text-white">Detail</button>
-                  <button className="border rounded-lg p-2 bg-yellow-600 text-white"><FontAwesomeIcon icon={faPencil}/></button>
-                  <button className="border rounded-lg p-2 bg-red-600 text-white"><FontAwesomeIcon icon={faTrash}/></button>
+              <tr key={index} className="text-center border-b">
+                <td className="">
+                  <div className="flex gap-2 justify-center">
+                    <img src="" alt="gambar produk" />
+                    {item.name}
+                  </div>
+                </td>
+                <td className="">Rp. {item.price}</td>
+                <td className="">{item.quantity} Pcs</td>
+                <td className="">Active</td>
+                <td className="p-2">
+                  <div className="flex gap-2 justify-center">
+                    <button className="border rounded-lg p-2 bg-green-600 text-white">Detail</button>
+                    <button className="border rounded-lg p-2 bg-yellow-600 text-white">
+                      <FontAwesomeIcon icon={faPencil} />
+                    </button>
+                    <button className="border rounded-lg p-2 bg-red-600 text-white">
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
