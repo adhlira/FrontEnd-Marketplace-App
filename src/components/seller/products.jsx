@@ -99,7 +99,7 @@ const products = () => {
             <tr className="border-b">
               <th className="w-80">Product Name</th>
               <th className=" w-40">Price</th>
-              <th className=" w-40">Stock</th>
+              <th className=" w-40">Category</th>
               <th className=" w-40">Status</th>
               <th className=" w-60">Action</th>
             </tr>
@@ -108,13 +108,13 @@ const products = () => {
             {product.map((item, index) => (
               <tr key={index} className="text-center border-b">
                 <td className="">
-                  <div className="flex gap-2 justify-center">
-                    <img src="" alt="gambar produk" />
+                  <div className="flex gap-2 justify-center p-2">
+                    <img src={item.ImageProduct[0].image_url} alt="gambar produk" className="w-20 h-auto m-1" />
                     {item.name}
                   </div>
                 </td>
                 <td className="">Rp. {item.price}</td>
-                <td className="">{item.quantity} Pcs</td>
+                <td className="">{item.Categories.name}</td>
                 <td className="">Active</td>
                 <td className="p-2">
                   <div className="flex gap-2 justify-center">
