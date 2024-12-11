@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faPlus, faTrash, faPencil } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faPlus, faTrash, faPencil, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const products = () => {
@@ -40,7 +41,7 @@ const products = () => {
 
   return (
     <>
-      <div className="container p-3 border mb-1 mx-auto rounded-lg">
+      <div className="container p-3 mb-3 mx-auto rounded-lg">
         <div className="flex justify-end">
           <div className="mr-auto w-1/2">
             <input type="text" className="border p-2 w-[80%] rounded-lg" placeholder="Search product ..." />
@@ -56,7 +57,7 @@ const products = () => {
         </div>
       </div>
 
-      <div className="container p-3 mx-auto border rounded-lg mb-1">
+      <div className="container p-3 mx-auto border rounded-lg mb-3">
         <div className="grid grid-cols-4 justify-items-center">
           <div className="font-serif">
             <h1 className="mb-2">Category</h1>
@@ -93,7 +94,7 @@ const products = () => {
         </div>
       </div>
 
-      <div className="container p-3 mx-auto border rounded-lg">
+      <div className="container p-3 mx-auto rounded-lg">
         <table className="table-bordered font-serif">
           <thead>
             <tr className="border-b">
@@ -107,18 +108,22 @@ const products = () => {
           <tbody>
             {product.map((item, index) => (
               <tr key={index} className="text-center border-b">
-                <td className="">
+                <td>
                   <div className="flex gap-2 justify-center p-2">
                     <img src={item.ImageProduct[0].image_url} alt="gambar produk" className="w-20 h-auto m-1" />
                     {item.name}
                   </div>
                 </td>
-                <td className="">Rp. {item.price}</td>
-                <td className="">{item.Categories.name}</td>
-                <td className="">Active</td>
-                <td className="p-2">
+                <td>Rp. {item.price}</td>
+                <td>{item.Categories.name}</td>
+                <td>Active</td>
+                <td>
                   <div className="flex gap-2 justify-center">
-                    <button className="border rounded-lg p-2 bg-green-600 text-white">Detail</button>
+                    <Link to={`../product/user/${item.id}`}>
+                      <button className="border rounded-lg p-2 bg-green-600 text-white">
+                        <FontAwesomeIcon icon={faCircleInfo} />
+                      </button>
+                    </Link>
                     <button className="border rounded-lg p-2 bg-yellow-600 text-white">
                       <FontAwesomeIcon icon={faPencil} />
                     </button>

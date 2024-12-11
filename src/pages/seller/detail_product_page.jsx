@@ -1,8 +1,8 @@
 import Navbar from "../../components/navbar.jsx";
 import Sidebar from "../../components/sidebar.jsx";
-import Products from "../../components/seller/products.jsx";
+import DetailProduct from "../../components/seller/detail_product.jsx";
 
-const products_page = () => {
+const detail_product_page = () => {
   return (
     <>
       <Navbar />
@@ -12,11 +12,11 @@ const products_page = () => {
             <Sidebar />
           </div>
           <div className="w-full border p-3 h-screen">
-            <Products />
+            <DetailProduct />
           </div>
         </div>
       </div>
     </>
   );
 };
-export default products_page;
+export default detail_product_page;
