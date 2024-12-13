@@ -24,6 +24,14 @@ const detail_product = () => {
     fetchData();
   }, {});
 
+  const formatRupiah = (number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      maximumFractionDigits: 0,
+    }).format(number);
+  };
+
   console.log("ini data detail product", product);
 
   return (
@@ -36,27 +44,49 @@ const detail_product = () => {
           </button>
         </Link>
       </div>
-      <table>
-        <thead>
-          <tr className="border-b">
-            <th className="w-40">Size</th>
-            <th className="w-40">Color</th>
-            <th className="w-40">Stock</th>
-          </tr>
-        </thead>
-        <tbody>
-          {product.DetailProduct?.map((item, index) => (
-            <tr key={index} className="border-b text-center">
-              <td className="">{item.Sizes?.name}</td>
-              <td className="">{item.Colors?.name}</td>
-              <td className="">{item.stock}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <br />
-      <h4 className="text-lg font-serif">Description :</h4>
-      <p className="text-base font-serif">{product.description}</p>
+      <div className="grid grid-cols-2 gap-2 rounded-lg">
+        <div className="p-2 rounded-lg">
+          <h4 className="text-lg font-serif font-semibold">Description</h4>
+          <p className="text-base font-serif">{product.description}</p>
+          <br />
+          <h4 className="text-lg font-serif font-semibold">Price </h4>
+          <p className="text-base font-serif">{formatRupiah(product.price)}</p>
+          <br />
+          <h4 className="text-lg font-serif font-semibold">Category </h4>
+          <p className="text-base font-serif">{product.Categories?.name}</p>
+          <br />
+          <h4 className="text-lg font-serif font-semibold mb-2">Data Stock</h4>
+          <table>
+            <thead>
+              <tr className="border-b">
+                <th className="w-40">Size</th>
+                <th className="w-40">Color</th>
+                <th className="w-40">Stock</th>
+              </tr>
+            </thead>
+            <tbody>
+              {product.DetailProduct?.map((item, index) => (
+                <tr key={index} className="border-b text-center">
+                  <td className="">{item.Sizes?.name}</td>
+                  <td className="">{item.Colors?.name}</td>
+                  <td className="">{item.stock}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="p-2 rounded-lg">
+          <h4 className="text-lg font-serif font-semibold">Image Product</h4>
+          <br />
+          <div className="grid grid-cols-4 gap-2">
+            {product.ImageProduct?.map((item, index) => (
+              <div key={index} className="gap-2 border rounded-lg">
+                <img src={item.image_url} alt="" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </>
   );
 };
