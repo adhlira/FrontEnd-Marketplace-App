@@ -5,6 +5,7 @@ import IndexSeller from "../pages/seller/index.jsx";
 import Home from "../pages/buyer/home.jsx";
 import ProductSellerPage from "../pages/seller/products_page.jsx";
 import DetailProductSellerPage from "../pages/seller/detail_product_page.jsx";
+import AddProductPage from "../pages/seller/add_product_page.jsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <Login /> },
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
   { path: "/home", element: <Home /> },
   { path: "/products-seller", element: <ProductSellerPage /> },
   { path: "/product/user/:id", element: <DetailProductSellerPage /> },
+  { path: "/add-product", element: <AddProductPage /> },
 ]);
 
 const AppRoutes = () => {

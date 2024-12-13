@@ -50,10 +50,12 @@ const products = () => {
             </button>
           </div>
 
-          <button className="border p-2 rounded-lg bg-blue-800 text-white font-serif italic hover:bg-blue-700">
-            <FontAwesomeIcon icon={faPlus} className="mr-2" />
-            Add Product
-          </button>
+          <Link to={"/add-product"}>
+            <button className="border p-2 rounded-lg bg-blue-800 text-white font-serif italic hover:bg-blue-700">
+              <FontAwesomeIcon icon={faPlus} className="mr-2" />
+              Add Product
+            </button>
+          </Link>
         </div>
       </div>
 
